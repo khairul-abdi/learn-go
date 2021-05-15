@@ -1,5 +1,5 @@
 # learn-go
 
-## Link
+## Link Resource
 - https://gobyexample.com/
 - https://dasarpemrogramangolang.novalagung.com/
