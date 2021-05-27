@@ -16,4 +16,5 @@ func main() {
 	fmt.Println("start")
 	<-ch
 	fmt.Println("finish")
+
 }
