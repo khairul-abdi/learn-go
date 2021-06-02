@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="static/jquery-3.6.0.min.js"></script>
+  <title>Multiple Upload</title>
+  <script>
+    $(function () {
+      $("#user-form").on("submit", function (e) {
+        e.preventDefault();
+
+        var $self = $(this);
+        var files = $("#upload-file")[0].files;
+        console.log('FILES', files)
+        var formData = new FormData();
+
+        for (var i = 0; i < files.length; i++) {
+            formData.append("files", files[i]);
+        }
+
+        $.ajax({
+            url: $self.attr("action"),
+            type: $self.attr("method"),
+            data: formData,
+            processData: false,
+            contentType: false,
+        }).then(function (res) {
+            alert(res);
+            $("#user-form").trigger("reset");
+        }).catch(function (a) {
+            alert("ERROR: " + a.responseText);
+        });
+    });
+    });
+  </script>
+</head>
+<body>
+  <form id="user-form" method="post" action="/upload">
+    <input required multiple id="upload-file" type="file" />
+    <br />
+    <button id="btn-upload" type="submit">Upload!</button>
+  </form>
+</body>
+</html>

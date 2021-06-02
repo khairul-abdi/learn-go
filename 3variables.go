@@ -1,8 +1,11 @@
 package main
 
-import ( "fmt"; "reflect")
+import (
+	"fmt"
+	"reflect"
+)
 
-func main()  {
+func main() {
 	var a = ""
 	var z int = 4
 	fmt.Println(z)
