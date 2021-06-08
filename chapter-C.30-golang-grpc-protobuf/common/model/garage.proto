@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-package model;
+//option go_package = "chapter-C.30-golang-grpc-protobuf/common/model";
+option go_package = "/";
+
 
 message GarageCoordinate {
     float latitude = 1;
@@ -32,7 +34,8 @@ message GarageAndUserId {
     Garage garage = 2;
 }
 
-import "google/protobuf/Empty.proto";
+//import "google/protobuf/Empty.proto";
+import "google/protobuf/empty.proto";
 
 service Garages {
     rpc List(GarageUserId) returns (GarageList) {}

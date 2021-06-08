@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package model;
+option go_package = "chapter-C.29-golang-protobuf-implementation/model";
 
 enum UserGender {
     UNDEFINED = 0;

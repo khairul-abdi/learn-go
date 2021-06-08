@@ -1,7 +1,8 @@
 
 syntax = "proto3";
 
-package model;
+//option go_package = "chapter-C.30-golang-grpc-protobuf/common/model";
+option go_package = "/";
 
 enum UserGender {
     UNDEFINED = 0;
@@ -22,7 +23,8 @@ message UserList {
 
 // ==== for service
 
-import "google/protobuf/Empty.proto";
+//import "google/protobuf/Empty.proto";
+import "google/protobuf/empty.proto";
 
 service Users {
     rpc Register(User) returns (google.protobuf.Empty) {}
