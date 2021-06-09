@@ -5,6 +5,7 @@ import (
   "encoding/json"
 	"fmt"
 	"log"
+  "reflect"
 
 	"chapter-C.30-golang-grpc-protobuf/common/config"
 	model "chapter-C.30-golang-grpc-protobuf/common/model"
@@ -88,16 +89,19 @@ func main() {
 
 	// show all registered users
 	res1, err := user.List(context.Background(), new(empty.Empty))
+  // log.Println("RES1 => ", res1)
+  // log.Println("RES1 => ", reflect.TypeOf(res1))
 	if err != nil {
 		log.Fatal(err.Error())
 	}
 	res1String, _ := json.Marshal(res1.List)
-	log.Println(string(res1String))
+	// log.Println("HASIL => ", reflect.TypeOf(string(res1String)))
+	log.Println("HASIL => ", res1String)
 
-	garage := serviceGarage()
-
+  
 	fmt.Println("\n", "===========> garage test A")
-
+	garage := serviceGarage()
+  
 	// add garage1 to user1
 	garage.Add(context.Background(), &model.GarageAndUserId{
 		UserId: user1.Id,
