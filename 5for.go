@@ -6,7 +6,7 @@ func main() {
 	sum := 1
 	for sum < 10 {
 		sum += sum
-		fmt.Println("In Loop => ",sum)
+		fmt.Println("In Loop => ", sum)
 	}
 	fmt.Println(sum)
 }

@@ -1,15 +1,13 @@
 package main
 
-import (
-	"net/http"
-)
+import "net/http"
 
 type CustomMux struct {
 	http.ServeMux
 	middlewares []func(next http.Handler) http.Handler
 }
 
-func (c *CustomMux) RegisterMiddeleware(next func(next http.Handler) http.Handler) {
+func (c *CustomMux) RegisterMiddleware(next func(next http.Handler) http.Handler) {
 	c.middlewares = append(c.middlewares, next)
 }
 
