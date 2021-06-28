@@ -61,6 +61,30 @@ func HandlerLogin(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid username or password", http.StatusBadRequest)
 		return
 	}
+
+	claims := MyClaims{
+		StandardClaims: jwt.StandardClaims{
+			Issuer:    APPLICATION_NAME,
+			ExpiresAt: time.Now().Add(LOGIN_EXPIRATION_DURATION).Unix(),
+		},
+		Username: userInfo["username"].(string),
+		Email:    userInfo["email"].(string),
+		Group:    userInfo["group"].(string),
+	}
+
+	token := jwt.NewWithClaims(
+		JWT_SIGNING_METHOD,
+		claims,
+	)
+
+	signedToken, err := token.SignedString(JWT_SIGNATURE_KEY)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	tokenString, _ := json.Marshal(M{"token": signedToken})
+	w.Write([]byte(tokenString))
 }
 
 func authenticateUser(username, password string) (bool, M) {
